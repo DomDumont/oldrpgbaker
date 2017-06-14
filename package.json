@@ -10,7 +10,11 @@
   "author": "DomDom",
   "license": "MIT",
   "dependencies": {
-    "phaser": "^2.6.2"
+    "@types/react": "^15.0.28",
+    "@types/react-dom": "^15.5.0",
+    "phaser": "^2.6.2",
+    "react": "^15.6.0",
+    "react-dom": "^15.6.0"
   },
   "devDependencies": {
     "@types/node": "^7.0.31",
@@ -19,6 +23,7 @@
     "gulp": "^3.9.1",
     "gulp-load-plugins": "^1.5.0",
     "gulp-tsb": "^2.0.3",
+    "source-map-loader": "^0.2.1",
     "typescript": "^2.3.4",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
