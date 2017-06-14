@@ -1,9 +1,9 @@
 var path = require('path');
 
 module.exports = {
-    entry: './src/main.ts',
+    entry: {game:'./src/main.ts', ide:'./src/index.tsx'},
     output: {
-        filename: 'bundle.js',
+        filename: "[name].bundle.js",
         path: path.resolve(__dirname, 'dist/public')
     },
     devtool: "source-map",
@@ -34,7 +34,8 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader'
-            }
+            },
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]
     },
     devServer: {
