@@ -14,7 +14,9 @@ module.exports = {
         // Don't bundle phaser.js, assume it'll be included in the HTML via a script
         // tag, and made available in the global variable Phaser.
         {
-            "phaser": "Phaser"
+            "phaser": "Phaser",
+            "react": "React",
+            "react-dom": "ReactDOM"
         }
 
     ],
