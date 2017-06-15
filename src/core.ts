@@ -1,5 +1,8 @@
 import { List, Map } from 'immutable';
 
+export const INITIAL_STATE = Map();
+
+
 export function setEntries(state, entries) {
   return state.set('entries', List(entries));
 }
@@ -19,12 +22,10 @@ function getWinners(vote) {
   */
   const aVotes = vote.getIn(['tally', a], 0);
   const bVotes = vote.getIn(['tally', b], 0);
-  console.log('aVotes = ' + aVotes);
-  console.log('bVotes = ' + bVotes);
   if (aVotes > bVotes) return [a];
   else if (aVotes < bVotes) return [b];
-  else {
-    console.log("les 2 sont egaux");
+  else 
+  {
     return [a, b];
   }
 
