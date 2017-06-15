@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceRoot}/src/new_index.ts",
-            "sourceMaps": true
+            "sourceMaps": true,
             "outFiles": [
                 "${workspaceRoot}/dist/**/*.js"
             ]
