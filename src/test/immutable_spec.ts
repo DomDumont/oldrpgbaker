@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import {List} from 'immutable';
+import {List,Map} from 'immutable';
 
 
 let chai = require("chai");
@@ -26,13 +26,13 @@ describe('immutability', () =>
   });
 
 
- describe('A List', () => {
+ describe('a List', () => {
 
     function addMovie(currentState, movie) {
       return currentState.push(movie);
     }
 
-    it('is immutable', () => {
+    it('is immutable', function  () {
       let state = List.of('Trainspotting', '28 Days Later');
       let nextState = addMovie(state, 'Sunshine');
 
@@ -49,4 +49,35 @@ describe('immutability', () =>
 
   });
 
+  describe('a tree', function  () {
+
+    function addMovie(currentState, movie) {
+      return currentState.set(
+        'movies',
+        currentState.get('movies').push(movie)
+      );
+    }
+
+    it('is immutable', function  () {
+      let state = Map({
+        movies: List.of('Trainspotting', '28 Days Later')
+      });
+      let nextState = addMovie(state, 'Sunshine');
+
+      expect(nextState).to.equal(Map({
+        movies: List.of(
+          'Trainspotting',
+          '28 Days Later',
+          'Sunshine'
+        )
+      }));
+      expect(state).to.equal(Map({
+        movies: List.of(
+          'Trainspotting',
+          '28 Days Later'
+        )
+      }));
+    });
+
+  });
 });
