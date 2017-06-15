@@ -28,12 +28,14 @@ gulp.task('watch', function ()
 
 
 // TypeScript build for /src folder 
-var tsConfigSrc = plugins.tsb.create(source + '/tsconfig.json');
+
+
 gulp.task('build', function () {
     return gulp.src(source +'/src/**/*.ts')
-        .pipe(tsConfigSrc()) 
+        .pipe(plugins.tsc()) 
         .pipe(gulp.dest(destination));
 });
+
 
 
 
