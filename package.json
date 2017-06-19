@@ -4,7 +4,7 @@
   "description": "",
   "main": "www.js",
   "scripts": {
-    "start": "node dist/new_index.js",
+    "start": "node dist/www.js",
     "test": "./node_modules/.bin/mocha dist/test",
     "dev": "./node_modules/.bin/webpack-dev-server"
   },

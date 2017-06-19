@@ -7,8 +7,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceRoot}/src/new_index.ts",
+            "name": "Launch Server",
+            "program": "${workspaceRoot}/src/server/www.ts",
             "sourceMaps": true,
             "outFiles": [
                 "${workspaceRoot}/dist/**/*.js"
@@ -17,13 +17,13 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome",
+            "name": "Launch Client",
             "url": "http://localhost:3000/index.html",
             "webRoot": "${workspaceRoot}",
             "sourceMaps": true
         },
        {
-    "name": "Run Tests",
+    "name": "Launch Tests",
     "type": "node",
     "request": "launch",
     "cwd": "${workspaceRoot}",
@@ -38,7 +38,7 @@
         "--nolazy"
     ],
     "sourceMaps": true,
-    "outDir": "${workspaceRoot}/dist/test"
+        
 }
     ]
 }
