@@ -37,8 +37,7 @@
     "runtimeArgs": [
         "--nolazy"
     ],
-    "sourceMaps": true,
-        
-}
+    "sourceMaps": true    
+    }
     ]
 }
