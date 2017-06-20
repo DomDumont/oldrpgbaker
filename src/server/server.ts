@@ -3,13 +3,15 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 
+import {MapRouter} from './routes/map';
+
 // Creates and configures an ExpressJS web server.
 export class Server {
 
   // ref to Express instance
   public app: express.Application;
 
-  //Run configuration methods on the Express instance.
+  // Run configuration methods on the Express instance.
   constructor() {
     this.app = express();
     this.middleware();
@@ -36,7 +38,7 @@ export class Server {
       });
     });
     this.app.use('/', router);
+    this.app.use('/api/v1/maps', new MapRouter().router);
   }
 
 }
-

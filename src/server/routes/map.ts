@@ -1,22 +1,23 @@
-import { NextFunction, Request, Response, Router } from "express";
-import { BaseRoute } from "./route";
+import { NextFunction, Request, Response, Router } from 'express';
+import { BaseRouter } from './base';
 
 export class MapRouter extends BaseRouter {
-  router: Router
 
   /**
    * Initialize the HeroRouter
    */
   constructor() {
-    this.router = Router();
+    super(); // TODO check this
     this.init();
   }
 
   /**
-   * GET all Heroes.
+   * GET all maps.
    */
   public getAll(req: Request, res: Response, next: NextFunction) {
-   
+   res.json({
+        message: 'getAll maps'
+      });
   }
 
   /**
@@ -28,4 +29,3 @@ export class MapRouter extends BaseRouter {
   }
 
 }
-
