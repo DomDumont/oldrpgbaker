@@ -1,9 +1,15 @@
 language: node_js
 node_js:
-  - "7"
-before_install:
-  - npm install
+  - "6"
+
 services:
   - mongodb
+
+
+before_install:
+   - npm install -g gulp-cli
+   - npm install
+
 script:
+  - gulp
   - npm test
