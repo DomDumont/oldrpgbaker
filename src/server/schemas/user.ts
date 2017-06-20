@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema } from 'mongoose';
 
 export var userSchema: Schema = new Schema(
     {
@@ -9,7 +9,7 @@ export var userSchema: Schema = new Schema(
     role: { type: String }
     });
 
-userSchema.pre("save", function (next) 
+userSchema.pre('save', function (next) 
 {
   if (!this.createdAt) {
     this.createdAt = new Date();

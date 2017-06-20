@@ -3,7 +3,7 @@
 <node TEXT="App" FOLDED="false" ID="ID_417189795" CREATED="1497947795226" MODIFIED="1497947970086" STYLE="oval">
 <font SIZE="18"/>
 <hook NAME="MapStyle">
-    <properties fit_to_viewport="false;"/>
+    <properties fit_to_viewport="false;" show_note_icons="true"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
@@ -81,12 +81,68 @@
 </stylenode>
 </map_styles>
 </hook>
-<hook NAME="AutomaticEdgeColor" COUNTER="2" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="AutomaticEdgeColor" COUNTER="3" RULE="ON_BRANCH_CREATION"/>
 <node TEXT="FrontEnd" POSITION="right" ID="ID_1169011085" CREATED="1497947976359" MODIFIED="1497948000189">
 <edge COLOR="#ff0000"/>
 </node>
-<node TEXT="BackEnd" POSITION="left" ID="ID_1345437940" CREATED="1497947983630" MODIFIED="1497948006035">
+<node TEXT="BackEnd" POSITION="left" ID="ID_1345437940" CREATED="1497947983630" MODIFIED="1497952857892">
 <edge COLOR="#0000ff"/>
+<node TEXT="Develop an API" ID="ID_398417517" CREATED="1497952850664" MODIFIED="1497952879157"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      http://mherman.org/blog/2016/11/05/developing-a-restful-api-with-node-and-typescript/#.WUjYZevyiHs
+    </p>
+  </body>
+</html>
+</richcontent>
+<node TEXT="Protect the API" ID="ID_1630483312" CREATED="1497952889730" MODIFIED="1497952895833"/>
+<node TEXT="Mongoose" ID="ID_681196038" CREATED="1497953088251" MODIFIED="1497953098771"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+</node>
+</node>
+<node TEXT="Learn" POSITION="right" ID="ID_337648292" CREATED="1497952921157" MODIFIED="1497952924856">
+<edge COLOR="#00ff00"/>
+<node TEXT="Learn Express" ID="ID_1504396904" CREATED="1497952931572" MODIFIED="1497952991452"><richcontent TYPE="NOTE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      http://expressjs.com/en/guide/using-middleware.html
+    </p>
+    <p>
+      
+    </p>
+    <p>
+      http://expressjs.com/en/guide/routing.html
+    </p>
+  </body>
+</html>
+</richcontent>
+</node>
+<node TEXT="Learn Typescript" ID="ID_1819441629" CREATED="1497953133287" MODIFIED="1497953138453"/>
+<node TEXT="Learn React" ID="ID_1679880997" CREATED="1497953151508" MODIFIED="1497953155429"/>
+<node TEXT="Learn Redux" ID="ID_1742864635" CREATED="1497953161230" MODIFIED="1497953165804"/>
+<node TEXT="Learn mongoose" ID="ID_80352593" CREATED="1497953900064" MODIFIED="1497953904634"/>
 </node>
 </node>
 </map>

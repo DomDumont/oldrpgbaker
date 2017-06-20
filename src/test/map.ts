@@ -7,7 +7,7 @@ import {Server} from '../server/server';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe('baseRoute', () => {
+describe('map', () => {
   let theServer = new Server();
   it('should be json', () => {
     return chai.request(theServer.app).get('/')
