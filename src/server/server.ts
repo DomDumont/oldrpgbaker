@@ -52,12 +52,16 @@ export class Server {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
 
+   // use q promises
+    
+    mongoose.Promise = require('q').Promise;
+
       // connect to mongoose
     let connection: mongoose.Connection = mongoose.createConnection(MONGODB_CONNECTION);
 
     // create models
     this._models.user = connection.model<IUserModel>('User', userSchema);
-    this._models.map = connection.model<IMapModel>('User', mapSchema);
+    this._models.map = connection.model<IMapModel>('Map', mapSchema);
 
     /* TODO
     // catch 404 and forward to error handler
