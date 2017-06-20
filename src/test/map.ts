@@ -7,19 +7,19 @@ import {Server} from '../server/server';
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe('map', () => {
-  let theServer = new Server();
+describe('GET api/v1/maps', () => {
+  
   it('should be json', () => {
-    return chai.request(theServer.app).get('/')
+    return chai.request(Server.getInstance().app).get('/api/v1/maps')
     .then(res => {
       expect(res.type).to.eql('application/json');
     });
   });
 
   it('should have a message prop', () => {
-    return chai.request(theServer.app).get('/')
+    return chai.request(Server.getInstance().app).get('/api/v1/maps')
     .then(res => {
-      expect(res.body.message).to.eql('Hello World!');
+      expect(res.body.message).to.eql('getAll maps');
     });
   });
 
