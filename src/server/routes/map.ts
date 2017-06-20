@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { BaseRouter } from './base';
-import { Server} from '../server';
+import { Server } from '../server';
 
 export class MapRouter extends BaseRouter {
 
@@ -27,12 +27,32 @@ export class MapRouter extends BaseRouter {
     });
   }
 
+  public postOne(req: Request, res: Response) {
+    // Creates a new map
+    let tempModel = Server.getInstance().models.map;
+    let map = new tempModel(req.body);
+    // Save it into the DB.
+    map.save((err, maps) => {
+      if (err) {
+        res.send(err);
+      } else {
+        // If no errors, send it back to the client
+        res.json({ message: 'Map successfully added!', map });
+      }
+    });
+  }
+
   /**
    * Take each handler, and attach to one of the Express.Router's
    * endpoints.
    */
   init() {
     this.router.get('/', this.getAll);
+    this.router.post('/', this.postOne);
+
+    // this.router.get('/:id', this.getOne);
+    // this.router.delete('/:id', this.deleteOne);
+    // this.router.put('/:id', this.updateOne);
   }
 
 }

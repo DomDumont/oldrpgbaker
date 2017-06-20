@@ -43,21 +43,22 @@ describe('GET api/v1/maps', () => {
   */
   describe('/POST map', () => {
 
-      it('it should POST a map ', (done) => {
-        let map = {
-            name: 'The Village',
-        };
-        chai.request(Server.getInstance().app)
-            .post('/api/v1/maps')
-            .send(map)
-            .end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('object');
-                res.body.should.have.property('message').eql('map successfully added!');
-                res.body.map.should.have.property('name');
-                done();
-            });
-      });
+    it('it should POST a map ', (done) => {
+      let map = {
+        name: 'The Village',
+      };
+      chai.request(Server.getInstance().app)
+        .post('/api/v1/maps')
+        .send(map)
+        .end((err, res) => {
+         
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('message').eql('Map successfully added!');
+          res.body.map.should.have.property('name');
+          done();
+        });
     });
+  });
 
 });
