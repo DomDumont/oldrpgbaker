@@ -54,7 +54,7 @@ export class Server {
 
    // use q promises
     
-    mongoose.Promise = require('q').Promise;
+    // mongoose.Promise = require('q').Promise;
 
       // connect to mongoose
     let connection: mongoose.Connection = mongoose.createConnection(MONGODB_CONNECTION);
