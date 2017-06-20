@@ -29,10 +29,11 @@ gulp.task('watch', function ()
 
 // TypeScript build for /src folder 
 
+var tsProject = plugins.typescript.createProject('tsconfig.json');
 
 gulp.task('build', function () {
     return gulp.src(source +'/src/**/*.ts')
-        .pipe(plugins.tsc()) 
+        .pipe(tsProject()) 
         .pipe(gulp.dest(destination));
 });
 

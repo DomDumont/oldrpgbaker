@@ -11,5 +11,5 @@ before_install:
    - npm install
 
 script:
-  - gulp
+  - npm run build
   - npm test
