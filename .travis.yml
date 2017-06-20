@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "7"
+before_install:
+  - npm install
+services:
+  - mongodb
+script:
+  - npm test
