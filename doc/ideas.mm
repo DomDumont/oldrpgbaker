@@ -1,9 +1,9 @@
 <map version="freeplane 1.5.9">
 <!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
-<node TEXT="App" FOLDED="false" ID="ID_417189795" CREATED="1497947795226" MODIFIED="1497947970086" STYLE="oval">
+<node TEXT="App" FOLDED="false" ID="ID_417189795" CREATED="1497947795226" MODIFIED="1498071784940" STYLE="oval">
 <font SIZE="18"/>
 <hook NAME="MapStyle">
-    <properties fit_to_viewport="false;" show_note_icons="true"/>
+    <properties fit_to_viewport="false;" show_note_icons="true" show_icon_for_attributes="true"/>
 
 <map_styles>
 <stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" VGAP_QUANTITY="24.0 pt">
@@ -82,6 +82,7 @@
 </map_styles>
 </hook>
 <hook NAME="AutomaticEdgeColor" COUNTER="3" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="accessories/plugins/AutomaticLayout.properties" VALUE="ALL"/>
 <node TEXT="FrontEnd" POSITION="right" ID="ID_1169011085" CREATED="1497947976359" MODIFIED="1497948000189">
 <edge COLOR="#ff0000"/>
 <node TEXT="Learn React" ID="ID_1679880997" CREATED="1497953151508" MODIFIED="1497953155429"/>
@@ -111,7 +112,7 @@
 </html>
 </richcontent>
 </node>
-<node TEXT="Develop an API" ID="ID_398417517" CREATED="1497952850664" MODIFIED="1497952879157"><richcontent TYPE="NOTE">
+<node TEXT="Develop an API" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_398417517" CREATED="1497952850664" MODIFIED="1498071665845"><richcontent TYPE="NOTE">
 
 <html>
   <head>
@@ -144,7 +145,11 @@
 </richcontent>
 <node TEXT="Learn mongoose" ID="ID_80352593" CREATED="1497953900064" MODIFIED="1497953904634"/>
 </node>
-<node TEXT="TDD" ID="ID_1497835557" CREATED="1498055801043" MODIFIED="1498055805974"/>
+<node TEXT="TDD" ID="ID_1497835557" CREATED="1498055801043" MODIFIED="1498055805974">
+<node TEXT="Check exactly what to test in case of a rest API" ID="ID_746069029" CREATED="1498071543732" MODIFIED="1498071564825"/>
+<node TEXT="Jest" ID="ID_1355669951" CREATED="1498071571315" MODIFIED="1498071575294"/>
+<node TEXT="Mocha" ID="ID_421230618" CREATED="1498071581359" MODIFIED="1498071583772"/>
+</node>
 </node>
 </node>
 <node TEXT="Learn" POSITION="right" ID="ID_337648292" CREATED="1497952921157" MODIFIED="1497952924856">

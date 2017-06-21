@@ -38,6 +38,26 @@ describe('GET api/v1/maps', () => {
     });
   });
 
+  describe('/GET/:id map', () => {
+      it('it should GET a map by the given id', (done) => {
+        let tempModel = Server.getInstance().models.map;
+        let map = new tempModel({ name: 'The Lord of the Rings' });
+        map.save((err, map2) => {
+             chai.request(Server.getInstance().app)
+            .get('/api/v1/maps/' + map2.id)
+            .send(map2)
+            .end((err2, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.should.have.property('name');
+                res.body.should.have.property('_id').eql(map2.id);
+                done();
+            });
+        });
+
+      });
+  });
+
   /*
   * Test the /POST route
   */
@@ -64,16 +84,15 @@ describe('GET api/v1/maps', () => {
   describe('/PUT/:id map', () => {
     it('it should UPDATE a map given the id', (done) => {
       let tempModel = Server.getInstance().models.map;
-      let map = new tempModel({ title: 'The Chronicles of Narnia' });
+      let map = new tempModel({ name: 'The Chronicles of Narnia' });
       map.save((err, map2) => {
          chai.request(Server.getInstance().app)
-          .put('/map/' + map2.id)
-          .send({ title: 'The Chronicles of Narnia' })
+          .put('/api/v1/maps/' + map2.id)
+          .send({ name: 'The Chronicles of Narnia' })
           .end((err2, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('map updated!');
-            res.body.map.should.have.property('year').eql(1950);
+            res.body.should.have.property('message').eql('Map updated!');
             done();
           });
       });
