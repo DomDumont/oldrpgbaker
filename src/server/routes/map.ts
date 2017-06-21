@@ -41,7 +41,36 @@ export class MapRouter extends BaseRouter {
       }
     });
   }
+  public getOne(req: Request, res: Response) {
+    Server.getInstance().models.map.findById(req.params.id, (err, map) => {
+      if (err) {
+        res.send(err);
+      }
+      // If no errors, send it back to the client
+      res.json(map);
+    });
+  }
+  public deleteOne(req: Request, res: Response) {
+    Server.getInstance().models.map.remove(req.params.id , (err) => {
+        
+          res.json({ message: 'Map successfully deleted!', err });
+      });
+  }
 
+  
+  public updateOne(req: Request, res: Response) {
+      Server.getInstance().models.map.findById(req.params.id, (err, map) => {
+        if (err) {
+          res.send(err);
+        }
+        Object.assign(map, req.body).save((err, map) => {
+          if (err) {
+            res.send(err);
+          }
+          res.json({ message: 'Map updated!', map });
+          }); 
+      });
+}  
   /**
    * Take each handler, and attach to one of the Express.Router's
    * endpoints.
@@ -50,9 +79,9 @@ export class MapRouter extends BaseRouter {
     this.router.get('/', this.getAll);
     this.router.post('/', this.postOne);
 
-    // this.router.get('/:id', this.getOne);
-    // this.router.delete('/:id', this.deleteOne);
-    // this.router.put('/:id', this.updateOne);
+    this.router.get('/:id', this.getOne);
+    this.router.delete('/:id', this.deleteOne);
+    this.router.put('/:id', this.updateOne);
   }
 
 }
