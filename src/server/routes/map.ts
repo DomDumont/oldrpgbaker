@@ -57,17 +57,16 @@ export class MapRouter extends BaseRouter {
       });
   }
 
-  
   public updateOne(req: Request, res: Response) {
       Server.getInstance().models.map.findById(req.params.id, (err, map) => {
         if (err) {
           res.send(err);
         }
-        Object.assign(map, req.body).save((err, map) => {
-          if (err) {
-            res.send(err);
+        Object.assign(map, req.body).save((err2, map2) => {
+          if (err2) {
+            res.send(err2);
           }
-          res.json({ message: 'Map updated!', map });
+          res.json({ message: 'Map updated!', map2 });
           }); 
       });
 }  
