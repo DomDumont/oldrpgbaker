@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { BaseRouter } from './base';
 import { Server } from '../server';
+import * as passport from 'passport';
 
 export class MapRouter extends BaseRouter {
 
@@ -75,7 +76,7 @@ export class MapRouter extends BaseRouter {
    * endpoints.
    */
   init() {
-    this.router.get('/', this.getAll);
+    this.router.get('/', passport.authenticate('jwt', { session: false }), this.getAll);
     this.router.post('/', this.postOne);
 
     this.router.get('/:id', this.getOne);

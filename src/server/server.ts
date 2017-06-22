@@ -3,19 +3,20 @@ import * as express from 'express';
 import * as morganLogger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as passport from 'passport';
-
+import {Strategy as JwtStrategy, ExtractJwt} from 'passport-jwt';  
+  
 import { MapRouter } from './routes/map';
 import { UserRouter } from './routes/user';
 
-import * as mongoose  from 'mongoose'; 
+import * as mongoose from 'mongoose';
 
-import { IModels } from './models/models'; 
-import { IUserModel } from './models/user'; 
-import { IMapModel } from './models/map'; 
+import { IModels } from './models/models';
+import { IUserModel } from './models/user';
+import { IMapModel } from './models/map';
 
 // schemas
-import { userSchema } from './schemas/user'; 
-import { mapSchema } from './schemas/map'; 
+import { userSchema } from './schemas/user';
+import { mapSchema } from './schemas/map';
 
 // Creates and configures an ExpressJS web server.
 export class Server {
@@ -26,12 +27,12 @@ export class Server {
   private _models: IModels; // an instance of IModel
 
   static getInstance() {
-        if (!Server.instance) {
-            Server.instance = new Server();
-            // ... any one time initialization goes here ...
-        }
-        return Server.instance;
+    if (!Server.instance) {
+      Server.instance = new Server();
+      // ... any one time initialization goes here ...
     }
+    return Server.instance;
+  }
 
   get models(): IModels {
     return this._models;
@@ -40,7 +41,7 @@ export class Server {
   private constructor() {
     this.app = express();
     this._models = <IModels> {};
-    
+
     this.Configure();
     this.routes();
   }
@@ -55,19 +56,37 @@ export class Server {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
 
-  // Passport
-    this.app.use(passport.initialize());
 
-   // use q promises
-    
+    // use q promises
+
     // mongoose.Promise = require('q').Promise;
 
-      // connect to mongoose
+    // connect to mongoose
     let connection: mongoose.Connection = mongoose.createConnection(MONGODB_CONNECTION);
 
     // create models
     this._models.user = connection.model<IUserModel>('User', userSchema);
     this._models.map = connection.model<IMapModel>('Map', mapSchema);
+
+
+    // Passport
+    this.app.use(passport.initialize());
+
+    var opts:any = {}
+    opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+    opts.secretOrKey = 'config.secret';
+    passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
+      this._models.user.findOne({ id: jwt_payload.id }, function (err, user) {
+        if (err) {
+          return done(err, false);
+        }
+        if (user) {
+          done(null, user);
+        } else {
+          done(null, false);
+        }
+      });
+    }));
 
     /* TODO
     // catch 404 and forward to error handler
