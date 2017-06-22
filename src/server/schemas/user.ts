@@ -27,13 +27,13 @@ userSchema.pre('save', function (next) {
     this.createdAt = new Date();
   }
   if (this.isModified('password') || this.isNew){
-   bcrypt.genSalt(10, function (err, salt) {
+   bcrypt.genSalt(10, function (err: Error, salt: string) {
       if (err) {
         return next(err);
       }
-      bcrypt.hash(this.password, salt, function(err, hash) {
-        if (err) {
-          return next(err);
+      bcrypt.hash(this.password, salt, function(err2: Error, hash: string) {
+        if (err2) {
+          return next(err2);
         }
         this.password = hash;
         next();
@@ -42,3 +42,13 @@ userSchema.pre('save', function (next) {
   }
   next();
 });
+
+// Create method to compare password input to password saved in database
+userSchema.methods.comparePassword = function(pw: any, cb: any) {  
+  bcrypt.compare(pw, this.password, function(err: Error, isMatch: Boolean) {
+    if (err) {
+      return cb(err);
+    }
+    cb(null, isMatch);
+  });
+};
