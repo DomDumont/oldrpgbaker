@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { BaseRouter } from './base';
 import { Server } from '../server';
+import { IUserModel } from '../models/user';
+import * as jwt from 'jsonwebtoken';
 
 export class UserRouter extends BaseRouter {
 
@@ -23,7 +25,7 @@ export class UserRouter extends BaseRouter {
       });
 
       // Attempt to save the user
-      newUser.save(function (err: any) {
+      newUser.save(function (err: {}) {
         if (err) {
           return res.json({ success: false, message: 'That email address already exists.' });
         }
@@ -31,8 +33,37 @@ export class UserRouter extends BaseRouter {
       });
     }
   }
+
+  public Authenticate(req: Request, res: Response) {
+    Server.getInstance().models.user.findOne({
+      email: req.body.email
+    }, function (err: any, user: any) {
+      if (err) {
+        throw err;
+      }
+
+      if (!user) {        
+        res.send({ success: false, message: 'Authentication failed. User not found.' });
+      } else {
+        // Check if password matches
+        user.comparePassword(req.body.password, function (err2 : Error, isMatch: Boolean) {
+          if (isMatch && !err2) {
+            // Create token if the password matched and no error was thrown
+            var token = jwt.sign(user, 'config.secret', {
+              expiresIn: 10080 // in seconds
+            });
+            res.json({ success: true, token: 'JWT ' + token });
+          } else {
+            res.send({ success: false, message: 'Authentication failed. Passwords did not match.' });
+          }
+        });
+      }
+    });
+  }
+
   init() {
     this.router.post('/register/', this.Register);
+    this.router.post('/authenticate/', this.Authenticate);
   }
 
 }
