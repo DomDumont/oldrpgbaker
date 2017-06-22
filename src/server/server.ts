@@ -4,7 +4,8 @@ import * as morganLogger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as passport from 'passport';
 
-import {MapRouter} from './routes/map';
+import { MapRouter } from './routes/map';
+import { UserRouter } from './routes/user';
 
 import * as mongoose  from 'mongoose'; 
 
@@ -93,7 +94,9 @@ export class Server {
       });
     });
     this.app.use('/', router);
+    this.app.use('/api/v1/users', new UserRouter().router);
     this.app.use('/api/v1/maps', new MapRouter().router);
+
   }
 
 }
