@@ -1,7 +1,8 @@
 import * as path from 'path';
 import * as express from 'express';
-import * as logger from 'morgan';
+import * as morganLogger from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as passport from 'passport';
 
 import {MapRouter} from './routes/map';
 
@@ -37,21 +38,24 @@ export class Server {
   // Run configuration methods on the Express instance.
   private constructor() {
     this.app = express();
-    // this.model = Object(); // initialize this to an empty object
     this._models = <IModels> {};
-    this.middleware();
+    
+    this.Configure();
     this.routes();
   }
 
   // Configure Express middleware.
-  private middleware(): void {
+  private Configure(): void {
 
     const MONGODB_CONNECTION: string = 'mongodb://localhost:27017/rpgmaker';
     const PASSPORT_SECRET: string = 'myAssOnTheCommode12';
 
-    this.app.use(logger('dev'));
+    this.app.use(morganLogger('dev'));
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
+
+  // Passport
+    this.app.use(passport.initialize());
 
    // use q promises
     
