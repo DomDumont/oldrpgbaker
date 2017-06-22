@@ -47,6 +47,7 @@ export class Server {
   private middleware(): void {
 
     const MONGODB_CONNECTION: string = 'mongodb://localhost:27017/rpgmaker';
+    const PASSPORT_SECRET: string = 'myAssOnTheCommode12';
 
     this.app.use(logger('dev'));
     this.app.use(bodyParser.json());

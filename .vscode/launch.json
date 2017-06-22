@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Server",
+            "name": "Server",
             "program": "${workspaceRoot}/src/server/www.ts",
             "sourceMaps": true,
             "outFiles": [
@@ -17,27 +17,29 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Client",
+            "name": "Client",
             "url": "http://localhost:3000/index.html",
             "webRoot": "${workspaceRoot}",
             "sourceMaps": true
         },
-       {
-    "name": "Launch Tests",
-    "type": "node",
-    "request": "launch",
-    "cwd": "${workspaceRoot}",
-    "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-    "args": [
-        "-u", "tdd",
-        "--timeout", "999999",
-        "--colors",
-        "./dist/test"
-    ],
-    "runtimeArgs": [
-        "--nolazy"
-    ],
-    "sourceMaps": true    
-    }
+        {
+            "name": "Tests",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "args": [
+                "-u",
+                "tdd",
+                "--timeout",
+                "999999",
+                "--colors",
+                "./dist/test"
+            ],
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "sourceMaps": true
+        }
     ]
 }
