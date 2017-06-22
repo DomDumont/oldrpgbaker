@@ -34,4 +34,49 @@ describe('GET api/v1/users', () => {
         });
     });
 
+    describe('/authenticate user', () => {
+
+        it('it should not authenticate an unknown user ', (done) => {
+            let user = {
+                email: 'newuser@titi.com',
+                password: 'rototo'
+            };
+     
+            chai.request(Server.getInstance().app)
+                .post('/api/v1/users/authenticate')
+                .send(user)
+                .end((err, res) => {
+
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('success').eql(false);
+                    res.body.should.have.property('message').eql('Authentication failed. User not found.');
+                    done();
+                });
+        });
+
+        it('it should authenticate a registered user ', (done) => {
+            let user = {
+                email: 'newuser@titi.com',
+                password: 'rototo'
+            };
+            chai.request(Server.getInstance().app)
+                .post('/api/v1/users/register')
+                .send(user)
+                .end();            
+            chai.request(Server.getInstance().app)
+                .post('/api/v1/users/authenticate')
+                .send(user)
+                .end((err, res) => {
+
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('success').eql(true);
+                    res.body.should.have.property('token');
+                    done();
+                });
+        });
+        
+    });
+
 });

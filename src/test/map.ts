@@ -8,12 +8,15 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 let should = chai.should();
 
+ let token = null;
+
 describe('GET api/v1/maps', () => {
 
   beforeEach((done) => { // Before each test we empty the database
     Server.getInstance().models.map.remove({}, (err) => {
       done();
     });
+
   });
 
   it('should be json', () => {
