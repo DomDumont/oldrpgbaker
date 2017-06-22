@@ -39,7 +39,8 @@
             "runtimeArgs": [
                 "--nolazy"
             ],
-            "sourceMaps": true
+            "sourceMaps": true,
+            "outDir":"${workspaceRoot}/dist"
         }
     ]
 }
