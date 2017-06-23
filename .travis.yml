@@ -18,8 +18,9 @@ services:
 
 before_install:
    - npm install -g gulp-cli
+   - npm install -g typescript@latest
    - npm install
 
 script:
-  - npm run build
+  - gulp
   - npm test
