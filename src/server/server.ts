@@ -59,7 +59,7 @@ export class Server {
 
     // use q promises
 
-    // mongoose.Promise = require('q').Promise;
+    (<any>mongoose).Promise = require('q').Promise;
 
     // connect to mongoose
     let connection: mongoose.Connection = mongoose.createConnection(MONGODB_CONNECTION);
@@ -75,7 +75,7 @@ export class Server {
     var opts:any = {}
     opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
     opts.secretOrKey = 'config.secret';
-    passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
+    passport.use(new JwtStrategy(opts, function (this: Server, jwt_payload, done) {
       this._models.user.findOne({ id: jwt_payload.id }, function (err, user) {
         if (err) {
           return done(err, false);
