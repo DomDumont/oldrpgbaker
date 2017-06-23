@@ -42,17 +42,18 @@ export class UserRouter extends BaseRouter {
         throw err;
       }
 
-      if (!user) {        
+      if (!user) {
         res.send({ success: false, message: 'Authentication failed. User not found.' });
       } else {
         // Check if password matches
-        user.comparePassword(req.body.password, function (err2 : Error, isMatch: Boolean) {
+        user.comparePassword(req.body.password, function (err2: Error, isMatch: Boolean) {
           if (isMatch && !err2) {
             // Create token if the password matched and no error was thrown
             var token = jwt.sign(user, 'config.secret', {
               expiresIn: 10080 // in seconds
             });
             res.json({ success: true, token: 'JWT ' + token });
+
           } else {
             res.send({ success: false, message: 'Authentication failed. Passwords did not match.' });
           }

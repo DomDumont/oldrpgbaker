@@ -73,8 +73,8 @@ export class Server {
     var opts: any = {};
     opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
     opts.secretOrKey = 'config.secret';
-    passport.use(new JwtStrategy(opts, function (this: Server, jwt_payload, done) {
-      this._models.user.findOne({ id: jwt_payload.id }, function (err, user) {
+    passport.use(new JwtStrategy(opts, ( jwt_payload, done) => {
+      Server.getInstance()._models.user.findOne({id: jwt_payload.sub}, function (err, user) {
         if (err) {
           return done(err, false);
         }
