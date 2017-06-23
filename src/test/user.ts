@@ -63,17 +63,18 @@ describe('GET api/v1/users', () => {
             chai.request(Server.getInstance().app)
                 .post('/api/v1/users/register')
                 .send(user)
-                .end();            
+                .end(function(err, res) {
             chai.request(Server.getInstance().app)
                 .post('/api/v1/users/authenticate')
                 .send(user)
-                .end((err, res) => {
+                .end((err2, res2) => {
 
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('success').eql(true);
-                    res.body.should.have.property('token');
+                    res2.should.have.status(200);
+                    res2.body.should.be.a('object');
+                    res2.body.should.have.property('success').eql(true);
+                    res2.body.should.have.property('token');
                     done();
+                });
                 });
         });
         
