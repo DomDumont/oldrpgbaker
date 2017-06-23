@@ -22,25 +22,21 @@ export var userSchema: Schema = new Schema(
     }
   });
 
-userSchema.pre('save', function (next) {
-  if (!this.createdAt) {
-    this.createdAt = new Date();
-  }
-  if (this.isModified('password') || this.isNew){
-   bcrypt.genSalt(10, function (err: Error, salt: string) {
-      if (err) {
-        return next(err);
-      }
-      bcrypt.hash(this.password, salt, function(err2: Error, hash: string) {
+userSchema.pre('save',   function (next)   {
+  const user = this;
+  if (!user.createdAt) {
+    user.createdAt = new Date();
+  }  
+  if (user.isModified('password') || user.isNew) {
+  bcrypt.hash(user.password, 10, function (err2: Error, hash: string)  {
         if (err2) {
           return next(err2);
         }
-        this.password = hash;
+        user.password = hash;
         next();
       });
-    }); 
-  }
-  next();
+    }   
+  
 });
 
 // Create method to compare password input to password saved in database

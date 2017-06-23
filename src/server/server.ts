@@ -56,10 +56,9 @@ export class Server {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
 
-
     // use q promises
 
-    (<any>mongoose).Promise = require('q').Promise;
+    (<any> mongoose).Promise = require('q').Promise;
 
     // connect to mongoose
     let connection: mongoose.Connection = mongoose.createConnection(MONGODB_CONNECTION);
@@ -68,11 +67,10 @@ export class Server {
     this._models.user = connection.model<IUserModel>('User', userSchema);
     this._models.map = connection.model<IMapModel>('Map', mapSchema);
 
-
     // Passport
     this.app.use(passport.initialize());
 
-    var opts:any = {}
+    var opts: any = {};
     opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
     opts.secretOrKey = 'config.secret';
     passport.use(new JwtStrategy(opts, function (this: Server, jwt_payload, done) {
