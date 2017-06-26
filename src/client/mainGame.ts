@@ -1,6 +1,6 @@
 import * as Phaser from "phaser";
-let img_bunny:any = require("../data/images/bunny.png");
-let img_players:any = require("../data/images/characters.png");
+let img_bunny:any = require("../../data/client/images/bunny.png");
+let img_players:any = require("../../data/client/images/characters.png");
 
 let game:any = new Phaser.Game(800, 600, Phaser.AUTO, "", { preload: preload, create: create, update: update,render:render });
 

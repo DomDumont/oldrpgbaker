@@ -23,7 +23,8 @@ var destination = './dist'; // dossier à livrer
 gulp.task('watch', function () 
     {
     gulp.watch(source + '/src/**/*.ts', ['build']);
-    gulp.watch(source + '/src/public/**/*', ['copypublic']);
+    gulp.watch(source + '/src/server/public/**/*', ['copypublic']);
+    gulp.watch(source + '/src/server/views/**/*', ['copyviews']);
     }); 
 
 
@@ -41,8 +42,14 @@ gulp.task('build', function () {
 
 
 gulp.task('copypublic', function () {
- return gulp.src(source + '/src/public/**/*')
-    .pipe(gulp.dest(destination + '/public/'));
+ return gulp.src(source + '/src/server/public/**/*')
+    .pipe(gulp.dest(destination + '/server/public/'));
+ });
+
+
+gulp.task('copyviews', function () {
+ return gulp.src(source + '/src/server/views/**/*')
+    .pipe(gulp.dest(destination + '/server/views/'));
  });
 
 

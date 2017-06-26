@@ -4,7 +4,7 @@ module.exports = {
     entry: {game:'./src/client/mainGame.ts', ide:'./src/client/index.tsx'},
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, 'dist/public')
+        path: path.resolve(__dirname, 'dist/server/public')
     },
     devtool: "source-map",
     resolve: {

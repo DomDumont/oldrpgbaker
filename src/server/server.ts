@@ -52,6 +52,13 @@ export class Server {
     const MONGODB_CONNECTION: string = 'mongodb://localhost:27017/rpgmaker';
     const PASSPORT_SECRET: string = 'myAssOnTheCommode12';
 
+    //add static paths
+    this.app.use(express.static(path.join(__dirname, "public")));
+
+    //configure pug
+    this.app.set("views", path.join(__dirname, "views"));
+    this.app.set("view engine", "pug");
+
     this.app.use(morganLogger('dev'));
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
@@ -106,9 +113,7 @@ export class Server {
     let router = express.Router();
     // placeholder route handler
     router.get('/', (req, res, next) => {
-      res.json({
-        message: 'Hello World!'
-      });
+      res.render('index');
     });
     this.app.use('/', router);
     this.app.use('/api/v1/users', new UserRouter().router);
