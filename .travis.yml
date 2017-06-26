@@ -23,4 +23,6 @@ before_install:
 
 script:
   - gulp
+  - gulp copypublic
+  - gulp copyviews
   - npm test
