@@ -68,7 +68,14 @@ export class Server {
     (<any> mongoose).Promise = require('q').Promise;
 
     // connect to mongoose
-    let connection: mongoose.Connection = mongoose.createConnection(MONGODB_CONNECTION);
+    let connection: mongoose.Connection = mongoose.createConnection(MONGODB_CONNECTION,function(error) {
+    // Check error in initial connection. There is no 2nd param to the callback.
+    if (error){
+      console.log("Cannot connect to mongoose");
+      process.exit(1);
+    }
+
+    });
 
     // create models
     this._models.user = connection.model<IUserModel>('User', userSchema);

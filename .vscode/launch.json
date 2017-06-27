@@ -20,7 +20,10 @@
             "name": "Client",
             "url": "http://localhost:3000",
             "webRoot": "${workspaceRoot}",
-            "sourceMaps": true
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:///*": "${workspaceRoot}/*"
+            }
         },
         {
             "name": "Tests",
