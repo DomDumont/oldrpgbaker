@@ -3,13 +3,13 @@ import * as ReactDOM from 'react-dom';
 import { Store, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import {rpgbakerApp} from './reducers/index';
-import {App} from './components/App';
+import {mainReducer} from './reducers/index';
+import App from './components/App';
 
 const initialState = {};
 
 
-const store: Store<any> = createStore(rpgbakerApp, initialState);
+const store: Store<any> = createStore(mainReducer, initialState);
 
 ReactDOM.render(
   <Provider store={store}>

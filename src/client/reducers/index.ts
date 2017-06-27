@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import {maps} from './maps';
+import reducer  from './maps';
 
 
-export const rpgbakerApp = combineReducers({
-  maps  
+export const mainReducer = combineReducers({
+  reducer  
 });
 

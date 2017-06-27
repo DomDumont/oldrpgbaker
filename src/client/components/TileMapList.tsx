@@ -4,6 +4,8 @@ import TileMapItem from './TileMapItem';
 
 interface TileMapListProps {
   tileMaps: TileMap[];
+  editTileMap: (tileMap:TileMap, text:string)=>void;
+  deleteTileMap: (tileMap:TileMap)=>void;  
 }
 interface TileMapListState {
   filter: string;
