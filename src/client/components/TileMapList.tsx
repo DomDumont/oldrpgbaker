@@ -12,7 +12,10 @@ interface TileMapListState {
 };
 
 export class TileMapList extends React.Component<TileMapListProps, TileMapListState> {
-
+  constructor(props, context) {
+    super(props, context);
+    this.state = { filter: 'SHOW_ALL' };
+  }
   render() {
    return ( <ul> 
        {this.props.tileMaps.map(tileMap => <TileMapItem tileMap= {tileMap}/>)} 

@@ -6,7 +6,9 @@ import { Provider } from 'react-redux';
 import {mainReducer} from './reducers/index';
 import App from './components/App';
 
-const initialState = {};
+const initialState = {
+ 
+};
 
 
 const store: Store<any> = createStore(mainReducer, initialState);

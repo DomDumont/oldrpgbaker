@@ -13,18 +13,17 @@ interface AppProps {
 
 class App extends React.Component<AppProps, void> {
     render() {
+         const { tileMaps, dispatch } = this.props;
         return  (<div> 
-                <TileMapList tileMaps={this.props.tileMaps}
-            editTileMap={(t,s) => this.props.dispatch(editTileMap(t, s))}
-            deleteTileMap={(t: TileMap) => this.props.dispatch(deleteTileMap(t))}
+                <TileMapList tileMaps={tileMaps}
+            editTileMap={(t,s) => dispatch(editTileMap(t, s))}
+            deleteTileMap={(t: TileMap) => dispatch(deleteTileMap(t))}
             />
                 <Footer compiler="TypeScript" framework="React" /> 
         </div>);
     }
 }
-
-const mapStateToProps = state => ({
-  tileMaps: state.tileMaps
-});
-
-export default connect(mapStateToProps)(App);
+function mapStateToProps(state) {
+  return { tileMaps: state.tileMaps }
+}
+export default connect(mapStateToProps)(App as any);

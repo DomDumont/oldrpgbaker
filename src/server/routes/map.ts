@@ -2,6 +2,7 @@ import { NextFunction, Request, Response, Router } from 'express';
 import { BaseRouter } from './base';
 import { Server } from '../server';
 import * as passport from 'passport';
+import * as _ from 'lodash'; 
 
 export class MapRouter extends BaseRouter {
 
@@ -63,7 +64,7 @@ export class MapRouter extends BaseRouter {
         if (err) {
           res.send(err);
         }
-        Object.assign(map, req.body).save((err2, map2) => {
+        _.assign(map, req.body).save((err2, map2) => {
           if (err2) {
             res.send(err2);
           }
