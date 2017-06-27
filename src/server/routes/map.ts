@@ -38,7 +38,7 @@ export class MapRouter extends BaseRouter {
         res.send(err);
       } else {
         // If no errors, send it back to the client
-        res.json({ message: 'Map successfully added!', map });
+        res.json({ message: 'TileMap successfully added!', map });
       }
     });
   }
@@ -54,7 +54,7 @@ export class MapRouter extends BaseRouter {
   public deleteOne(req: Request, res: Response) {
     Server.getInstance().models.map.remove(req.params.id , (err) => {
         
-          res.json({ message: 'Map successfully deleted!', err });
+          res.json({ message: 'TileMap successfully deleted!', err });
       });
   }
 
@@ -67,7 +67,7 @@ export class MapRouter extends BaseRouter {
           if (err2) {
             res.send(err2);
           }
-          res.json({ message: 'Map updated!', map2 });
+          res.json({ message: 'TileMap updated!', map2 });
           }); 
       });
 }  

@@ -1,32 +1,32 @@
 import { createAction, Action } from 'redux-actions';
 import { assign } from 'lodash';
 
-import { Map } from './model';
+import { TileMap } from './model';
 
 import {
-  ADD_MAP,
-  DELETE_MAP,
-  EDIT_MAP
+  ADD_TILEMAP,
+  DELETE_TILEMAP,
+  EDIT_TILEMAP
 } from './constants/ActionTypes';
 
-const addMap = createAction<Map, string>(
-  ADD_MAP,
+const addTileMap = createAction<TileMap, string>(
+  ADD_TILEMAP,
   (text: string) => ({ text, completed: false })
 );
 
-const deleteMap = createAction<Map, Map>(
-  DELETE_MAP,
-  (todo: Map) => todo
+const deleteTileMap = createAction<TileMap, TileMap>(
+  DELETE_TILEMAP,
+  (todo: TileMap) => todo
 );
 
-const editMap = createAction<Map, Map, string>(
-  EDIT_MAP,
-  (todo: Map, newText: string) => <Map>assign(todo, { text: newText })
+const editTileMap = createAction<TileMap, TileMap, string>(
+  EDIT_TILEMAP,
+  (tileMap: TileMap, newText: string) => <TileMap>assign(tileMap, { text: newText })
 );
 
 
 export {
-  addMap,
-  deleteMap,
-  editMap,
+  addTileMap,
+  deleteTileMap,
+  editTileMap,
 }

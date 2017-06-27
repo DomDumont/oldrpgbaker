@@ -1,3 +1,3 @@
-export const ADD_MAP = 'ADD_MAP';
-export const DELETE_MAP = 'DELETE_MAP';
-export const EDIT_MAP = 'EDIT_MAP';
+export const ADD_TILEMAP = 'ADD_TILEMAP';
+export const DELETE_TILEMAP = 'DELETE_TILEMAP';
+export const EDIT_TILEMAP = 'EDIT_TILEMAP';

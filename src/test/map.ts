@@ -104,7 +104,7 @@ describe('GET api/v1/maps', () => {
 
           res.should.have.status(200);
           res.body.should.be.a('object');
-          res.body.should.have.property('message').eql('Map successfully added!');
+          res.body.should.have.property('message').eql('TileMap successfully added!');
           res.body.map.should.have.property('name');
           done();
         });
@@ -126,7 +126,7 @@ describe('GET api/v1/maps', () => {
           .end((err2, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Map updated!');
+            res.body.should.have.property('message').eql('TileMap updated!');
             done();
           });
       });

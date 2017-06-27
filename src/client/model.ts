@@ -1,6 +1,6 @@
-export type Map = {
+export type TileMap = {
   id?: number;
   text: string;
 };
 
-export type IState = Map[];
+export type IState = TileMap[];
